@@ -12,8 +12,8 @@ function filterCity() {
     td = tr[i].getElementsByTagName("td")[2];
 
     if (td) {
-      txtValue = td.textContent.toLowerCase() || td.innerText.toLowerCase();
-      if (txtValue.indexOf(input) > -1) {
+		txtValue = td.textContent.toLowerCase() ||td.innerText.toLowerCase();
+      if (txtValue.indexOf(input.toLowerCase()) > -1) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
