@@ -12,7 +12,7 @@ function filterCity() {
     td = tr[i].getElementsByTagName("td")[2];
 
     if (td) {
-      txtValue = td.textContent || td.innerText;
+      txtValue = td.textContent.toLowerCase() || td.innerText.toLowerCase();
       if (txtValue.indexOf(input) > -1) {
         tr[i].style.display = "";
       } else {
@@ -20,6 +20,7 @@ function filterCity() {
       }
     }
   }
+  
 }
 
 </script> 
@@ -29,9 +30,9 @@ $(function() {
     $(".btn-primary").click(function() {
     
       $('.error').hide();
-	  var name_regex = /^[a-zA-Z]+$/;
+	  var name_regex = /^[a-zA-Z ]*$/;
 	  var email_regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-	  var city_regex = /^[a-zA-Z]+$/;
+	  var city_regex = /^[a-zA-Z ]*$/;
 	  var phone_regex = /^[0-9]+$/;
   	   var name = $("input#name").val();
   		if (name == "") {
@@ -91,10 +92,9 @@ $(function() {
     url: "create.php",
     data: dataString,
     success: function() {
-      $('#form').html("<div id='message'></div>");
-      $('#message').html("<h2> Form Submitted!</h2>")
-      .hide()
+	  alert('Record added successfully');
     }
+
   });
       return true;
     });
@@ -110,6 +110,9 @@ $(function() {
 <input type="text" id="myInput" onkeyup="filterCity()" placeholder="Filter/Search by City..">
 </div>
 <br>
+<div id='message'></div>
+
+
 <div class="table-responsive">
 <table id="myTable" class="table table-striped table-bordered table-hover table-condensed">
 	<thead>
